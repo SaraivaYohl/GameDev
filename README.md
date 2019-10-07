@@ -1,2 +1,2 @@
 # GameDev
-A videogame about a snake
+A place to place games
