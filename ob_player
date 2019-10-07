@@ -1,0 +1,11 @@
+//Create event
+HSP = 4.5;
+VSP_FORWARD = 6;
+VSP_BACKWARD = 2;
+state_idle = "idle";
+state_moving = "move";
+status = "status";
+invincibility = false;
+invincible_timer = 0
+cooldown_on = false
+alarm[0] = room_speed * 0.1;
