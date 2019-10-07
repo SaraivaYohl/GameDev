@@ -1,6 +1,6 @@
-/// @description bullet thing
-//if instance_create_layer(x,y-40,"Player_stuff",ob_Fang)
-//{	
-//	instance_destroy();
-//}
+/// @description Insert description here
+if object_exists(ob_Playersnek)
+{
+	camera_set_view_target(view_camera[0],ob_Bird)
+}
 
