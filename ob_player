@@ -9,3 +9,89 @@ invincibility = false;
 invincible_timer = 0
 cooldown_on = false
 alarm[0] = room_speed * 0.1;
+//Step event
+if object_exists(ob_Playersnek)
+{
+	y = y - 1;
+}
+//Controls
+move_up = keyboard_check(vk_up);
+move_down = keyboard_check(vk_down);
+move_left = keyboard_check(vk_left);
+move_right = keyboard_check(vk_right);
+key_s = keyboard_check(ord("S"))
+roll = keyboard_check(ord("D"))
+
+if key_s and cooldown_on = false
+{
+	instance_create_layer(x,y-40,"Player_stuff",ob_Fang)
+	cooldown_on = true
+}
+
+
+if move_up or move_down or move_left or move_right
+{
+	status = "move"
+}
+	else 
+	{
+	status = "idle"
+	}
+switch(status)
+{
+	case state_idle: 
+	sprite_index = sp_SnekIdle;
+	camera_set_view_speed(view_camera[0],0,1);
+	break;
+	case state_moving:
+	if move_up 
+	{
+		y = y - VSP_FORWARD
+		sprite_index = sp_SnekForward
+		camera_set_view_speed(view_camera[0],0,6);
+	}
+	if move_down 
+	{
+		y = y + VSP_BACKWARD
+		sprite_index = sp_SnekBackward
+	}
+	if move_left
+	{
+		x = x - HSP
+		sprite_index = sp_SnekRight
+		camera_set_view_speed(view_camera[0],4,6);
+	}
+	if move_right
+	{
+		x = x + HSP
+		sprite_index = sp_SnekLeft
+		camera_set_view_speed(view_camera[0],-4,6);
+	}
+	break;
+}
+if roll
+{
+	sprite_index = sp_SnekRoll
+	invincibility = true 
+	invincible_timer = 1
+	alarm[0] = room_speed;
+}
+else if  invincible_timer = 0 and (place_meeting(x,y,ob_Ladybug) or place_meeting(x,y,ob_Cherryfly) or place_meeting(x,y,ob_Stinger))
+{
+global.player_score = 0
+instance_destroy()
+}
+if instance_exists(ob_Playersnek) 
+{
+	if (ob_Playersnek.x <= 20) or (ob_Playersnek.x >= 1000) 
+	{
+		x = xprevious 
+	}
+
+	if (ob_Playersnek.y <= 100) or (ob_Playersnek.y >= 7580) 
+	{
+		y = yprevious 
+	}
+}
+
+  
